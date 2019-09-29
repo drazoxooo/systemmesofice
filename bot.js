@@ -137,6 +137,10 @@ client.on("message", message => {
 
 👑*clear 『To clear the chat』
 
+👑*closeroom 『closeroom』
+
+👑*openroom 『openroom』
+
 👑*ct  『to create a text channel』
 
 👑*cv  『To create a voice channel』
