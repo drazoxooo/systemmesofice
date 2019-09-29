@@ -18,7 +18,26 @@ client.on('ready',  () => {
   console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
   console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
 });
-
+client.on('message',message => {
+    if(message.content === prefix + "closeroom") {
+    if(!message.channel.guild) return message.channel.send('**This command is only done on servers**');
+    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('**:x: - No Permissions ! **');
+    message.channel.overwritePermissions(message.guild.id, {
+     SEND_MESSAGES: false
+     }).then(() => {
+        message.channel.send("**:white_check_mark: | Channel Closed :lock:**")
+ });
+    }
+    if(message.content === prefix + "openroom") {
+    if(!message.channel.guild) return message.channel.send('**This command is only done on servers**');
+    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('**:x: - No Permissions ! **');
+    message.channel.overwritePermissions(message.guild.id, {
+     SEND_MESSAGES: true
+     }).then(() => {
+        message.channel.send("**:white_check_mark: | Channel Opened :unlock:**")
+  });//by viper & ggaming & zaid
+  }      
+ });
 
 client.on("message", message => {
              
