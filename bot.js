@@ -256,27 +256,6 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
         serverQueue.voiceChannel.leave();
         queue.delete(guild.id);
         return;
-    }
-    console.log(serverQueue.songs);
- 
-    const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-        .on('end', reason => {
-      message.channel.send('``The queue of song is end.``');
-            if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
-            else console.log(reason);
-            serverQueue.songs.shift();
-            play(guild, serverQueue.songs[0]);
-        })
-        .on('error', error => console.error(error));
-    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
- 
-    serverQueue.textChannel.send(`?? Start playing: **${song.title}**`);
-}
-});
- client.on("ready", ()=>{
-let x = client.channels.get("625346503220789258");
-if (x) x.join();
-});
 
 
 
